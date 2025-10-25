@@ -1,0 +1,161 @@
+/*h1 {
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing: 0.05em;
+    color: #353535;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+button {
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.05em;
+    color: #353535;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+body {
+  font-family: 'IBM Plex Mono', sans-serif;
+}
+
+/* Header styles */
+header {
+  background-color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+}
+
+header .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .flex {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+header img {
+  width: 5rem;
+  height: 5rem;
+  object-fit: contain;
+}
+
+header h1 {
+  font-family: 'IBM plex mono', sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+body {
+  background-color: #FFFDE3;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Banner Section */
+section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Form Styles */
+section form {
+  padding: 3rem 0;
+}
+
+input[type="text"], input[type="tel"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 30px;
+  border: 1px solid #333;
+  background-color: white;
+  color: #333;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+input:focus {
+  border-color: #C21010;
+  outline: none;
+}
+
+/* Button Styles */
+button {
+  background-color: #C21010;
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  transition: background-color 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #a01818;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #C21010;
+  padding: 2rem 0;
+}
+
+footer .container {
+  text-align: center;
+}
+
+footer .flex {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+footer .flex a {
+  color: #fff;
+  transition: color 0.3s;
+}
+
+footer .flex a:hover {
+  color: #f5f0e8;
+}
+
+/* Scroll-to-top Button */
+button[aria-label="Scroll to top"] {
+  background-color: #c41e1e;
+  color: white;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button[aria-label="Scroll to top"]:hover {
+  background-color: #a01818;
+}
+
+footer {
+  background-color: #f60000;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
