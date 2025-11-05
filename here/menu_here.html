@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEVDINE - Menu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/frontend/style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* --- Added CSS for glow effect and active buttons --- */
+
+    /* This is the "glow" style you requested */
+    .glow {
+      box-shadow: 0 0 18px 7px rgba(255, 215, 0, 0.75); /* Golden glow */
+      transform: scale(1.02); /* Make it pop out slightly */
+    }
+
+    /* This class will be added to all menu items for transitions */
+    .menu-item {
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* This class styles the category buttons */
+    .category-btn {
+      transition: all 0.2s ease-in-out;
+      opacity: 0.8;
+      padding-bottom: 2px; /* Make space for the active border */
+      border-bottom: 2px solid transparent; /* Placeholder border */
+    }
+    
+    /* This style applies to the *active* category button */
+    .category-btn.active {
+      opacity: 1;
+      font-weight: 700;
+      border-bottom-color: white; /* Active underline */
+    }
+    /* --- End of added CSS --- */
+
+  </style>
+</head>
+<body class="bg-[#FFF8E7]">
+ 
+  <header class="bg-[#FFF8E7] border-b border-gray-200">
+    <div class="flex items-center justify-between px-4 py-3">
+      <div class="flex items-center gap-3">
+         <img src="/frontend/logo.png" class="w-12 h-12 rounded-full object-cover">
+        <a href="/frontend/"><h1 class="text-2xl font-bold text-gray-900">DEVDINE</h1>
+        </a>
+      </div>
+      <div class="flex items-center gap-4">
+        <button class="text-gray-700 hover:text-gray-900">
+           <a href="/frontend/index.html"></a>
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </button>
+        <button class="text-gray-700 hover:text-gray-900">
+          <a href="/frontend/index.html"></a>
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  
+  <nav class="bg-[#C41E3A] text-white">
+    <div class="flex items-center justify-around px-4 py-3 text-sm font-semibold">
+      <button id="btn-all" data-category="all" class="category-btn">All</button>
+      <button id="btn-fried" data-category="fried" class="category-btn">Fried</button>
+      <button id="btn-soup" data-category="soup" class="category-btn">Soup</button>
+      <button id="btn-rice" data-category="rice" class="category-btn">Rice</button>
+      <button id="btn-drink" data-category="drink" class="category-btn">Drink</button>
+    </div>
+  </nav>
+
+  
+  <main class="px-4 py-6">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">All</h2>
+    
+    
+    <div class="grid grid-cols-3 gap-3 mb-20">
+      
+      <div class="bg-[#C8D5B9] rounded-2xl p-3 flex flex-col items-center menu-item" data-category="fried">
+        <div class="w-20 h-20 bg-[#E57373] rounded-full mb-2"></div>
+        <h3 class="text-sm font-semibold text-gray-900 text-center mb-1">Omelet</h3>
+        <p class="text-xs text-gray-700 mb-2">50 B</p>
+        <button class="bg-[#C41E3A] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#A01828] transition-colors">
+          ORDER!
+        </button>
+      </div>
+
+      
+      <div class="bg-[#C8D5B9] rounded-2xl p-3 flex flex-col items-center menu-item" data-category="fried">
+        <div class="w-20 h-20 bg-[#E57373] rounded-full mb-2"></div>
+        <h3 class="text-sm font-semibold text-gray-900 text-center mb-1">Fried Chicken</h3>
+        <p class="text-xs text-gray-700 mb-2">50 B</p>
+        <button class="bg-[#C41E3A] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#A01828] transition-colors">
+        ORDER!
+        </button>
+      </div>
+
+      
+      <div class="bg-[#C8D5B9] rounded-2xl p-3 flex flex-col items-center menu-item" data-category="rice">
+        <div class="w-20 h-20 bg-[#E57373] rounded-full mb-2"></div>
+        <h3 class="text-sm font-semibold text-gray-900 text-center mb-1">Crab Fried Rice</h3>
+        <p class="text-xs text-gray-700 mb-2">50 B</p>
+        <button class="bg-[#C41E3A] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#A01828] transition-colors">
+       ORDER!
+        </button>
+      </div>
+
+      
+      <div class="bg-[#C8D5B9] rounded-2xl p-3 flex flex-col items-center menu-item" data-category="fried">
+        <div class="w-20 h-20 bg-[#E57373] rounded-full mb-2"></div>
+        <h3 class="text-sm font-semibold text-gray-900 text-center mb-1">Fried Shrimp Cake</h3>
+        <p class="text-xs text-gray-700 mb-2">50 B</p>
+        <button class="bg-[#C41E3A] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#A01828] transition-colors">
+        ORDER!
+        </button>
+      </div>
+
+      
+      <div class="bg-[#C8D5B9] rounded-2xl p-3 flex flex-col items-center menu-item" data-category="soup">
+        <div class="w-20 h-20 bg-[#E57373] rounded-full mb-2"></div>
+        <h3 class="text-sm font-semibold text-gray-900 text-center mb-1">Spicy Shrimp Soup</h3>
+        <p class="text-xs text-gray-700 mb-2">50 B</p>
+        <button class="bg-[#C41E3A] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#A01828] transition-colors">
+         ORDER!
+        </button>
+      </div>
+
+   
+      <div class="bg-[#C8D5B9] rounded-2xl p-3 flex flex-col items-center menu-item" data-category="rice">
+        <div class="w-20 h-20 bg-[#E57373] rounded-full mb-2"></div>
+        <h3 class="text-sm font-semibold text-gray-900 text-center mb-1">Rice</h3>
+        <p class="text-xs text-gray-700 mb-2">50 B</p>
+        <button class="bg-[#C41E3A] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#A01828] transition-colors">
+        ORDER!
+        </button>
+      </div>
+
+
+      <div class="bg-[#C8D5B9] rounded-2xl p-3 flex flex-col items-center menu-item" data-category="drink">
+        <div class="w-20 h-20 bg-[#E57373] rounded-full mb-2"></div>
+        <h3 class="text-sm font-semibold text-gray-900 text-center mb-1">Water</h3>
+        <p class="text-xs text-gray-700 mb-2">50 B</p>
+        <button class="bg-[#C41E3A] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#A01828] transition-colors">
+        ORDER!
+        </button>
+      </div>
+
+   
+      <div class="bg-[#C8D5B9] rounded-2xl p-3 flex flex-col items-center menu-item" data-category="drink">
+        <div class="w-20 h-20 bg-[#E57373] rounded-full mb-2"></div>
+        <h3 class="text-sm font-semibold text-gray-900 text-center mb-1">Cocacola</h3>
+        <p class="text-xs text-gray-700 mb-2">50 B</p>
+        <button class="bg-[#C41E3A] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#A01828] transition-colors">
+         ORDER!
+        </button>
+      </div>
+
+
+      <div class="bg-[#C8D5B9] rounded-2xl p-3 flex flex-col items-center menu-item" data-category="drink">
+        <div class="w-20 h-20 bg-[#E57373] rounded-full mb-2"></div>
+        <h3 class="text-sm font-semibold text-gray-900 text-center mb-1">Ice</h3>
+        <p class="text-xs text-gray-700 mb-2">50 B</p>
+        <button class="bg-[#C41E3A] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#A01828] transition-colors">
+        ORDER!
+        </button>
+      </div>
+    </div>
+  </main>
+
+  
+  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-20 right-4 bg-[#C41E3A] text-white w-12 h-12 rounded-lg shadow-lg hover:bg-[#A01828] transition-colors flex items-center justify-center text-xs font-bold">
+
+  </button>
+<footer>
+  <p>DEVDINE NAJA</p>
+</footer>
+
+<script>
+  // Wait for the HTML document to be fully loaded before running script
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Select all the elements we need
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const menuItems = document.querySelectorAll('.menu-item');
+    const mainHeading = document.querySelector('main h2');
+
+    // 2. Define the function that filters items
+    function filterCategory(event) {
+      // Get the category from the button that was clicked (e.g., "rice")
+      const category = event.currentTarget.dataset.category;
+      
+      // --- Update Button Styles ---
+      // First, remove the 'active' class from all buttons
+      categoryButtons.forEach(btn => btn.classList.remove('active'));
+      // Then, add the 'active' class to the specific button that was clicked
+      event.currentTarget.classList.add('active');
+      
+      // --- Update Main Heading ---
+      // Set the heading text to match the category (e.g., "Rice")
+      mainHeading.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+      
+      // --- Filter and Style Menu Items ---
+      menuItems.forEach(item => {
+        const itemCategory = item.dataset.category;
+        
+        // Check if item should be shown
+        // Show if "All" is clicked OR if item category matches button category
+        if (category === 'all' || itemCategory === category) {
+          item.style.display = 'flex'; // Show the item
+        } else {
+          item.style.display = 'none'; // Hide the item
+        }
+        
+        // --- This is your "Glow Up" request ---
+        // Add "glow" class ONLY if the "rice" category is active
+        // AND the item is a "rice" item
+        if (category === 'rice' && itemCategory === 'rice') {
+          item.classList.add('glow');
+        } else {
+          // Remove glow from all other items or categories
+          item.classList.remove('glow');
+        }
+      });
+    }
+
+    // 3. Add a 'click' listener to every category button
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', filterCategory);
+    });
+    
+    // 4. Set "All" as the active button by default when the page loads
+    document.querySelector('#btn-all').classList.add('active');
+  });
+</script>
+</body>
+</html>
