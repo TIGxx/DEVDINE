@@ -1,0 +1,312 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #FFFDE3;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    padding: 15px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 3.5rem;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.header-flex {
+    display: flex;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: left;
+    color: #333;
+}
+
+.title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #FFFDE3;
+}
+
+.home-content {
+    text-align: center;
+    padding: 10rem 2rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-logo {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+
+.home-content h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.home-content h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+.home-content p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
+    color: #333;
+    margin-left: 25rem;
+    margin-right: 25rem;
+    margin-bottom: 5rem;
+}
+
+.start-button {
+    background-color: #C21010;
+    color: #FFFDE3;
+    padding: 1rem 2rem;
+    width: 200px;
+    height: 80px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.start-button:hover {
+    background-color: #A50E0E;
+    transform: scale(1.05);
+}
+
+/* ========== Modal look (matches your screenshot) ========== */
+:root{
+  --dd-cream: #FFFDE3;      /* panel body */
+  --dd-green: #CFE8A9;      /* top band */
+  --dd-red:   #C21010;      /* action button */
+  --dd-ink:   #333;
+  --dd-muted: #8c8c8c;
+  --dd-shadow: 0 25px 40px rgba(0,0,0,.15), 0 4px 10px rgba(0,0,0,.06);
+}
+
+body.modal-open { overflow: hidden; }
+
+.dd-modal{
+  position: fixed; inset: 0; z-index: 9999;
+  display: none;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+.dd-modal[aria-hidden="false"]{ display:block; }
+
+.dd-modal__overlay{
+  position:absolute; inset:0;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(2px);
+}
+
+.dd-modal__panel{
+  position: relative;
+  width: min(92vw, 28rem);
+  margin: 10vh auto 0;
+  background: var(--dd-cream);
+  border-radius: 20px;
+  box-shadow: var(--dd-shadow);
+  padding: 1.5rem 1.5rem 2.25rem;
+  text-align: left;
+}
+
+.dd-modal__cap{
+  position:absolute; top:0; left:0; right:0;
+  height: 3rem;
+  background: var(--dd-green);
+  border-radius: 20px 20px 0 0;
+}
+
+.dd-modal__close{
+    position:absolute;
+    right: 1rem;
+    top: .6rem;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border: none;
+    background: none;
+    color: #567a36 !important; /* visible green */
+    font-size: 25px !important;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    z-index: 10;
+}
+.dd-modal__close:hover{
+    background: rgba(0,0,0,0.08);
+    border-radius: 6px;
+}
+
+.dd-modal__title{
+  margin-top: 3rem; /* clears the green band */
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--dd-ink);
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: .02em;
+}
+
+/* Fields */
+.dd-field{ display:block; margin: 2rem 0; }
+.dd-label{
+  display:block;
+  font-weight:700;
+  font-family: 'Roboto', sans-serif;
+  font-size:.9rem;
+  margin-bottom:.5rem;
+  color:var(--dd-ink);
+}
+.dd-input{
+  width:100%; padding:.55rem .8rem;
+  border-radius: 999px;
+  border: 2px solid #e7e7e7;
+  outline: none;
+  background:#fff;
+  font-family: 'Roboto', sans-serif;
+  font-size:.95rem;
+}
+.dd-input:focus{ border-color:#d0d0d0; box-shadow: 0 0 0 3px rgba(0,0,0,.04); }
+
+/* Red circular CTA like your arrow button */
+.dd-cta{
+  display:grid; place-items:center;
+  width: 50px; height: 50px;
+  margin: 2rem auto 0;
+  border-radius: 999px; border: none;
+  background: var(--dd-red); color: #fff;
+  cursor:pointer;
+}
+.dd-cta:active{ transform: translateY(1px); }
+.dd-cta:hover{ background: #a50e0e; transform: scale(1.1);}
+
+/* Helper copy in OTP modal */
+.dd-help{
+  margin: .4rem 0 1.1rem;
+  text-align: center; color: var(--dd-muted);
+  line-height: 1.25;
+}
+#ddEmailEcho{ color: var(--dd-ink); font-weight: bold; }
+
+/* OTP cells */
+.dd-otp{
+  display:flex; justify-content:center; gap:.7rem; margin-top:.2rem;
+}
+.dd-otp__cell{
+  width: 46px; height: 46px; text-align:center;
+  border-radius: 14px;
+  border: 2px solid #efeedd;
+  background: #fbfaf0;
+  box-shadow: inset 0 1px 0 rgba(0,0,0,.03), 0 2px 8px rgba(0,0,0,.06);
+  font-size: 1.2rem; font-weight: bold; color: var(--dd-ink);
+  outline: none;
+}
+.dd-otp__cell:focus{ border-color:#e2e1c8; box-shadow: 0 0 0 3px rgba(0,0,0,.035); }
+
+/* Small screens tweaks */
+@media (max-width: 420px){
+  .dd-modal__panel{ width: min(94vw, 26rem); padding: 1.25rem 1rem 1.75rem; }
+  .dd-otp__cell{ width:44px; height:44px; }
+}
+
+.back-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: #E64848;
+    border-radius: 20%;
+    padding: 3px;
+}
+
+.backtop-btn img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+footer {
+    margin-top: 10rem;
+}
+
+footer .footer-content {
+    background-color: #C21010;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 5rem;
+    padding-left: 5rem;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+}
+
+footer .footer-top {
+    text-align: left;
+    margin-bottom: 1rem;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+ .social-icon {
+    display: inline-flex;
+    gap: 2rem;
+    margin-bottom: 8rem;
+    cursor: pointer;
+}
+
+.social-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.social-icon img:hover {
+    transform: scale(1.1);
+}
+
+footer .footer-bottom {
+    font-size: 16px;
+    text-align: left;
+}

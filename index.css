@@ -1,0 +1,357 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #FFFDE3;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    padding: 15px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 3.5rem;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.header-flex {
+    display: flex;
+}
+
+.right-side {
+    display: inline-flex;
+    position: absolute;
+    align-items: center;
+    right: 6rem;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: left;
+    color: #333;
+}
+
+.title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.right-side {
+    gap: 20px;
+}
+
+.home-icon, .cart-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.home-icon:hover, .cart-icon:hover {
+    transform: scale(1.1);
+}
+
+.fullscreen-slider {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    margin-top: 0;
+}
+
+.slides-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.dots-container {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+}
+
+.dots {
+    display: flex;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px 25px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.dot:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.2);
+}
+
+.dot.active {
+    background: #dc3545;
+    transform: scale(1.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: 30px;
+}
+
+.next-btn {
+    right: 30px;
+}
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 15px;
+    }
+            
+    .nav a {
+        margin-left: 15px;
+        font-size: 14px;
+    }
+            
+    .nav-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+            
+    .prev-btn {
+        left: 15px;
+    }
+            
+    .next-btn {
+        right: 15px;
+    }
+            
+    .dots {
+        padding: 12px 20px;
+        }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+            
+    .nav {
+        display: flex;
+        gap: 10px;
+    }
+            
+    .nav a {
+        margin-left: 0;
+        font-size: 13px;
+    }
+            
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+            
+    .dots-container {
+        bottom: 20px;
+    }
+            
+    .dot {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+.form-spacing {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.form input[type="text"] {
+    display: block;
+    width: 400px;
+    height: 50px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.form input[type="tel"] {
+    display: block;
+    width: 400px;
+    height: 50px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+button {
+    background-color: #C21010;
+    color: #FFFDE3;
+    width: 150px;
+    height: 75px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #A50E0E;
+    transform: scale(1.05);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #FFFDE3;
+}
+
+footer {
+    margin-top: 10rem;
+}
+
+footer .footer-content {
+    background-color: #C21010;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 5rem;
+    padding-left: 5rem;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+}
+
+footer .footer-top {
+    text-align: left;
+    margin-bottom: 1rem;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+ .social-icon {
+    display: inline-flex;
+    gap: 2rem;
+    margin-bottom: 8rem;
+    cursor: pointer;
+}
+
+.social-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.social-icon img:hover {
+    transform: scale(1.1);
+}
+
+footer .footer-bottom {
+    font-size: 16px;
+    text-align: left;
+}
