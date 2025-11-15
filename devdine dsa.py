@@ -53,7 +53,7 @@ class KitchenManager:
             self.batches.append([dish, batch_id, False, time.time()])
         self.orders.append([dish, bill_number, remarks, False, False, batch_id, time.time()])
 
-    # Lock latest unlocked batch for dish (kept for compatibility)
+    # Lock latest unlocked batch for dish
     def lock_batch(self, dish):
         for i in range(len(self.batches) - 1, -1, -1):
             b = self.batches[i]
@@ -61,17 +61,6 @@ class KitchenManager:
                 b[2] = True
                 for o in self.orders:
                     if o[0] == dish and o[5] == b[1]:
-                        o[3] = True
-                return True
-        return False
-
-    # Lock a specific batch (fixes the UI "Confirm" targeting bug)
-    def lock_specific_batch(self, dish, batch_id):
-        for b in self.batches:
-            if b[0] == dish and b[1] == batch_id and not b[2]:
-                b[2] = True
-                for o in self.orders:
-                    if o[0] == dish and o[5] == batch_id:
                         o[3] = True
                 return True
         return False
@@ -124,7 +113,9 @@ class KitchenManager:
             if b[2]:
                 dish = b[0]
                 if dish in added:
+                    # allow multiple locked batches if they exist, handle each
                     pass
+                # orders for this locked batch that are not yet ready
                 orders = [x for x in self.orders if x[0] == dish and x[5] == b[1] and not x[4]]
                 if orders:
                     locked.append((dish, b[1], orders))
@@ -168,7 +159,7 @@ class KitchenApp(tk.Tk):
 
         # Set a style
         self.style = ttk.Style(self)
-        self.style.theme_use("clam")
+        self.style.theme_use("clam")  # clam works well cross-platform for custom styles
 
         # fonts / sizes
         self.header_font = ("Helvetica", 14, "bold")
@@ -186,14 +177,18 @@ class KitchenApp(tk.Tk):
         self.pages = {}
         self._build_pages()
 
+        # show default page
         self.show_page("Orders")
 
+        # periodic feeder and UI updater
         self.after(1500, self._periodic_feed_and_refresh)
 
     def _build_sidebar(self):
+        # Title
         title = ttk.Label(self.sidebar, text="Kitchen Hub", font=("Helvetica", 18, "bold"))
         title.pack(pady=(20, 10), padx=12)
 
+        # Buttons
         buttons = [
             ("Orders", self.show_orders_page),
             ("Chef", self.show_chef_page),
@@ -204,6 +199,7 @@ class KitchenApp(tk.Tk):
             b = ttk.Button(self.sidebar, text=txt, command=cmd)
             b.pack(fill="x", padx=12, pady=6, ipady=8)
 
+        # Quick sample data section
         ttk.Separator(self.sidebar).pack(fill="x", padx=12, pady=8)
         ttk.Label(self.sidebar, text="Quick Actions", font=self.big_font).pack(padx=12, anchor="w")
         add_sample = ttk.Button(self.sidebar, text="Add sample delivery bills", command=self._add_sample_bills)
@@ -212,18 +208,22 @@ class KitchenApp(tk.Tk):
         clear_all.pack(fill="x", padx=12, pady=(0,6))
 
     def _build_pages(self):
+        # Orders page (Customer order)
         orders_page = ttk.Frame(self.content, padding=12)
         self.pages["Orders"] = orders_page
         self._build_orders_page(orders_page)
 
+        # Chef page (main kitchen)
         chef_page = ttk.Frame(self.content, padding=12)
         self.pages["Chef"] = chef_page
         self._build_chef_page(chef_page)
 
+        # Dine-in page
         dinein_page = ttk.Frame(self.content, padding=12)
         self.pages["Dine-In"] = dinein_page
         self._build_dinein_page(dinein_page)
 
+        # Delivery page
         delivery_page = ttk.Frame(self.content, padding=12)
         self.pages["Delivery"] = delivery_page
         self._build_delivery_page(delivery_page)
@@ -234,6 +234,7 @@ class KitchenApp(tk.Tk):
         page = self.pages.get(name)
         if page:
             page.pack(fill="both", expand=True)
+        # refresh page content
         self._refresh_all_pages()
 
     def show_orders_page(self):
@@ -249,11 +250,12 @@ class KitchenApp(tk.Tk):
         self.show_page("Delivery")
 
     # ----------------------
-    # Orders Page
+    # Orders Page (Customer interface)
     # ----------------------
     def _build_orders_page(self, parent):
         frame = parent
         frame.columnconfigure(0, weight=1)
+        # header
         header = ttk.Label(frame, text="Place Table Order", font=self.header_font)
         header.grid(row=0, column=0, sticky="w", pady=(0,10))
 
@@ -280,6 +282,7 @@ class KitchenApp(tk.Tk):
 
         ttk.Separator(frame).grid(row=4, column=0, sticky="ew", pady=12)
 
+        # Small form to push a delivery bill into queue
         header2 = ttk.Label(frame, text="Add Delivery Bill to Queue", font=self.header_font)
         header2.grid(row=5, column=0, sticky="w", pady=(0,8))
         delivery_frame = ttk.Frame(frame)
@@ -320,6 +323,7 @@ class KitchenApp(tk.Tk):
         if not raw_items:
             messagebox.showerror("Input error", "Please enter at least one item.")
             return
+        # parse items
         items = []
         for part in raw_items.split(","):
             part = part.strip()
@@ -344,9 +348,11 @@ class KitchenApp(tk.Tk):
         header = ttk.Label(frame, text="Chef Dashboard", font=self.header_font)
         header.pack(anchor="w")
 
+        # Panels area — we use three columns: pending, preparing, ready
         panels = ttk.Frame(frame)
         panels.pack(fill="both", expand=True, pady=8)
 
+        # Pending (unlocked)
         pending_wrap = ttk.Frame(panels)
         pending_wrap.pack(side="left", fill="both", expand=True, padx=(0,8))
         ttk.Label(pending_wrap, text="Pending", font=self.big_font).pack(anchor="w")
@@ -359,6 +365,7 @@ class KitchenApp(tk.Tk):
         self.pending_canvas.pack(side="left", fill="both", expand=True)
         self.pending_scroll.pack(side="right", fill="y")
 
+        # Preparing (locked)
         preparing_wrap = ttk.Frame(panels)
         preparing_wrap.pack(side="left", fill="both", expand=True, padx=8)
         ttk.Label(preparing_wrap, text="Preparing", font=self.big_font).pack(anchor="w")
@@ -371,35 +378,35 @@ class KitchenApp(tk.Tk):
         self.prep_canvas.pack(side="left", fill="both", expand=True)
         self.prep_scroll.pack(side="right", fill="y")
 
-    # ----------------------
-    # FIXED FUNCTION
-    # ----------------------
+        # Ready (ready to serve / pack)
+        ready_wrap = ttk.Frame(panels)
+        ready_wrap.pack(side="left", fill="both", expand=True, padx=(8,0))
+        ttk.Label(ready_wrap, text="Ready", font=self.big_font).pack(anchor="w")
+        self.ready_canvas = tk.Canvas(ready_wrap, highlightthickness=0)
+        self.ready_scroll = ttk.Scrollbar(ready_wrap, orient="vertical", command=self.ready_canvas.yview)
+        self.ready_inner = ttk.Frame(self.ready_canvas)
+        self.ready_inner.bind("<Configure>", lambda e: self.ready_canvas.configure(scrollregion=self.ready_canvas.bbox("all")))
+        self.ready_canvas.create_window((0,0), window=self.ready_inner, anchor="nw")
+        self.ready_canvas.configure(yscrollcommand=self.ready_scroll.set)
+        self.ready_canvas.pack(side="left", fill="both", expand=True)
+        self.ready_scroll.pack(side="right", fill="y")
+
     def _populate_chef_panels(self):
         # Clear previous
         for w in self.pending_inner.winfo_children():
             w.destroy()
         for w in self.prep_inner.winfo_children():
             w.destroy()
+        for w in self.ready_inner.winfo_children():
+            w.destroy()
 
-        # Helper: add placeholder if empty
-        def check_empty(container, message):
-            if not container.winfo_children():
-                lbl = ttk.Label(container, text=message,
-                                font=("Helvetica", 10, "italic"))
-                lbl.pack(anchor="center", pady=20)
-
-        # ---------------------
-        # Pending batches
-        # ---------------------
-        pending_batches = self.kitchen.get_unlocked_batches()
-
-        for dish, batch_id, orders in pending_batches:
+        # Pending
+        for dish, batch_id, orders in self.kitchen.get_unlocked_batches():
             card = ttk.Frame(self.pending_inner, relief="raised", padding=10)
             card.pack(fill="x", pady=6, padx=6)
-
             header = ttk.Label(card, text=f"{dish}  —  x{len(orders)}", font=self.card_font)
             header.pack(anchor="w")
-
+            # elapsed
             created_ts = None
             for b in self.kitchen.batches:
                 if b[1] == batch_id:
@@ -410,9 +417,7 @@ class KitchenApp(tk.Tk):
                 secs = int(time.time() - created_ts)
                 m, s = divmod(secs, 60)
                 elapsed = f"{m:02d}:{s:02d}"
-
-            ttk.Label(card, text=f"Batch #{batch_id}  •  Pending  •  {elapsed}",
-                      font=("Helvetica", 9)).pack(anchor="w", pady=(2,6))
+            ttk.Label(card, text=f"Batch #{batch_id}  •  Pending  •  {elapsed}", font=("Helvetica", 9)).pack(anchor="w", pady=(2,6))
 
             for o in orders:
                 bill, remark = o[1], o[2]
@@ -421,45 +426,59 @@ class KitchenApp(tk.Tk):
 
             btn_frame = ttk.Frame(card)
             btn_frame.pack(anchor="e", pady=(6,0))
-            confirm_btn = ttk.Button(btn_frame, text="Confirm (Start)",
-                                     command=lambda d=dish, b=batch_id: self._lock_batch(d, b))
+            confirm_btn = ttk.Button(btn_frame, text="Confirm (Start)", command=lambda d=dish: self._lock_batch(d))
             confirm_btn.pack(side="left", padx=4)
 
-        check_empty(self.pending_inner, "No pending dishes.")
-
-        # ---------------------
-        # Preparing batches
-        # ---------------------
-        preparing_batches = self.kitchen.get_locked_batches()
-
-        for dish, batch_id, orders in preparing_batches:
+        # Preparing (locked but not ready)
+        for dish, batch_id, orders in self.kitchen.get_locked_batches():
             card = ttk.Frame(self.prep_inner, relief="raised", padding=10)
             card.pack(fill="x", pady=6, padx=6)
-
             header = ttk.Label(card, text=f"{dish}  —  x{len(orders)}", font=self.card_font)
             header.pack(anchor="w")
-
-            ttk.Label(card, text=f"Batch #{batch_id}  •  Preparing",
-                      font=("Helvetica", 9)).pack(anchor="w", pady=(2,6))
-
+            ttk.Label(card, text=f"Batch #{batch_id}  •  Preparing", font=("Helvetica", 9)).pack(anchor="w", pady=(2,6))
             for o in orders:
                 bill, remark = o[1], o[2]
                 rtxt = f" — {remark}" if remark else ""
                 ttk.Label(card, text=f"{bill}{rtxt}", font=("Helvetica", 9)).pack(anchor="w")
-
             btn_frame = ttk.Frame(card)
             btn_frame.pack(anchor="e", pady=(6,0))
-            done_btn = ttk.Button(btn_frame, text="Mark Ready",
-                                  command=lambda d=dish, i=batch_id: self._mark_batch_done(d, i))
+            done_btn = ttk.Button(btn_frame, text="Mark Ready", command=lambda d=dish, i=batch_id: self._mark_batch_done(d, i))
             done_btn.pack(side="left", padx=4)
 
-        check_empty(self.prep_inner, "No dishes being prepared.")
+        # Ready (all items in bill are ready)
+        dine_ready, del_ready = self.kitchen.get_ready_bills()
+        # show dine-in first
+        for bill in dine_ready:
+            # show items in the bill
+            items = [o for o in self.kitchen.orders if o[1] == bill]
+            card = ttk.Frame(self.ready_inner, relief="raised", padding=10)
+            card.pack(fill="x", pady=6, padx=6)
+            ttk.Label(card, text=f"{bill} (Dine-in)", font=self.card_font).pack(anchor="w")
+            for i in items:
+                rtxt = f" — {i[2]}" if i[2] else ""
+                ttk.Label(card, text=f"{i[0]}{rtxt}", font=("Helvetica", 9)).pack(anchor="w")
+            btn_frame = ttk.Frame(card)
+            btn_frame.pack(anchor="e", pady=(6,0))
+            serve_btn = ttk.Button(btn_frame, text="Mark Served (Remove)", command=lambda b=bill: self._remove_bill(b))
+            serve_btn.pack(side="left", padx=4)
 
-    # ----------------------
-    def _lock_batch(self, dish, batch_id):
-        ok = self.kitchen.lock_specific_batch(dish, batch_id)
+        for bill in del_ready:
+            items = [o for o in self.kitchen.orders if o[1] == bill]
+            card = ttk.Frame(self.ready_inner, relief="raised", padding=10)
+            card.pack(fill="x", pady=6, padx=6)
+            ttk.Label(card, text=f"{bill} (Delivery)", font=self.card_font).pack(anchor="w")
+            for i in items:
+                rtxt = f" — {i[2]}" if i[2] else ""
+                ttk.Label(card, text=f"{i[0]}{rtxt}", font=("Helvetica", 9)).pack(anchor="w")
+            btn_frame = ttk.Frame(card)
+            btn_frame.pack(anchor="e", pady=(6,0))
+            pack_btn = ttk.Button(btn_frame, text="Mark Packed (Remove)", command=lambda b=bill: self._remove_bill(b))
+            pack_btn.pack(side="left", padx=4)
+
+    def _lock_batch(self, dish):
+        ok = self.kitchen.lock_batch(dish)
         if ok:
-            self._populate_chef_panels()
+            self._refresh_all_pages()
         else:
             messagebox.showwarning("Lock failed", "Could not lock batch (maybe already locked).")
 
@@ -469,12 +488,16 @@ class KitchenApp(tk.Tk):
             messagebox.showinfo("Batch ready", f"{dish} batch {batch_index} marked ready.")
         else:
             messagebox.showwarning("No change", "No items updated.")
-        self._populate_chef_panels()
-        self._populate_dinein()
-        self._populate_delivery()
+        self._refresh_all_pages()
+
+    def _remove_bill(self, bill_number):
+        # remove all orders for that bill (they should be ready)
+        self.kitchen.orders = [o for o in self.kitchen.orders if o[1] != bill_number]
+        messagebox.showinfo("Removed", f"{bill_number} removed from kitchen.")
+        self._refresh_all_pages()
 
     # ----------------------
-    # Dine-In page
+    # Dine-in page
     # ----------------------
     def _build_dinein_page(self, parent):
         frame = parent
@@ -490,6 +513,7 @@ class KitchenApp(tk.Tk):
         if not ready_dishes:
             ttk.Label(self.dinein_list_frame, text="No dishes ready.", font=self.big_font).pack(anchor="w", pady=8)
             return
+        # group by table
         grouped = {}
         for o in ready_dishes:
             grouped.setdefault(o[1], []).append(o)
@@ -502,11 +526,11 @@ class KitchenApp(tk.Tk):
                 row = ttk.Frame(card)
                 row.pack(fill="x", pady=2)
                 ttk.Label(row, text=f"{item[0]}{remark}", font=("Helvetica", 10)).pack(side="left")
-                served_btn = ttk.Button(row, text="Mark Served",
-                                        command=lambda d=item[0], t=item[1]: self._serve_item(d, t))
+                served_btn = ttk.Button(row, text="Mark Served", command=lambda d=item[0], t=item[1]: self._serve_item(d, t))
                 served_btn.pack(side="right")
 
     def _serve_item(self, dish, table):
+        # remove first matching ready order that matches dish & table
         removed = False
         new_orders = []
         for o in self.kitchen.orders:
@@ -550,27 +574,36 @@ class KitchenApp(tk.Tk):
         messagebox.showinfo("Packed", f"{bill} marked as packed.")
         self._refresh_all_pages()
 
-    # Universal refresh
+    # ----------------------
+    # Utility / refresh / periodic
+    # ----------------------
     def _refresh_all_pages(self):
+        # refresh Chef sections, Dine-in, Delivery
         self._populate_chef_panels()
         self._populate_dinein()
         self._populate_delivery()
 
     def _periodic_feed_and_refresh(self):
+        # feed next delivery item into kitchen (simulate incoming items)
         fed = self.kitchen.feed_next_item_to_kitchen()
         if fed:
             print(f">>> Fed {fed} into kitchen")
-            self._populate_chef_panels()
+        self._refresh_all_pages()
+        # repeat
         self.after(2500, self._periodic_feed_and_refresh)
 
+    # ----------------------
     # Quick helpers
+    # ----------------------
     def _add_sample_bills(self):
+        # Add a couple sample bills into delivery queue
         self.kitchen.add_bill_to_queue(1001, [["Margherita Pizza", "extra cheese"], ["Caesar Salad", ""]])
         self.kitchen.add_bill_to_queue(1002, [["Tomato Soup", ""], ["Grilled Chicken", "no sauce"], ["Spaghetti Bolognese", "extra meat"]])
         messagebox.showinfo("Added", "Sample bills added to delivery queue.")
         self._refresh_all_pages()
 
     def _clear_all_ready(self):
+        # remove any orders that are ready
         self.kitchen.orders = [o for o in self.kitchen.orders if not o[4]]
         messagebox.showinfo("Cleared", "All ready orders removed.")
         self._refresh_all_pages()
@@ -580,6 +613,7 @@ class KitchenApp(tk.Tk):
 # -----------------------
 if __name__ == "__main__":
     kitchen_manager = KitchenManager()
+    # start with some queued bills
     kitchen_manager.add_bill_to_queue(2001, [["Margherita Pizza", "extra cheese"], ["Tomato Soup", ""]])
     app = KitchenApp(kitchen_manager)
     app.mainloop()
