@@ -1,0 +1,311 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevDine Cart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-[#FFF8E7] min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white border-b-2 border-gray-200 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-qcn4gvnavUG3etFou1pehibQu9h4x3.png" alt="DEVDINE Logo" class="w-12 h-12 rounded-full object-cover">
+                <h1 class="text-2xl font-bold text-gray-900">DEVDINE</h1>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="cart.html" class="text-gray-700 hover:text-red-700 transition-colors">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                </a>
+                <a href="index.html" class="text-gray-700 hover:text-red-700 transition-colors">
+                    <i class="fas fa-home text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Red Banner -->
+    <div class="bg-[#C41E3A] h-12"></div>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-4xl mx-auto w-full px-6 py-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-gray-400 pl-4">DevDine Cart</h2>
+
+        <!-- Cart Table -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+            <!-- Table Header -->
+            <div class="grid grid-cols-12 gap-4 px-6 py-4 bg-gray-50 border-b border-gray-200 font-semibold text-gray-700">
+                <div class="col-span-4">Item</div>
+                <div class="col-span-3 text-center">Quantity</div>
+                <div class="col-span-3 text-center">Price</div>
+                <div class="col-span-2 text-center">Edit</div>
+            </div>
+
+            <!-- Cart Items -->
+            <div class="divide-y divide-gray-200">
+                <!-- Item 1 -->
+                <div class="grid grid-cols-12 gap-4 px-6 py-6 items-center">
+                    <div class="col-span-4 text-gray-700">order name</div>
+                    <div class="col-span-3 flex items-center justify-center gap-3">
+                        <button class="text-gray-600 hover:text-gray-900 font-bold text-xl">-</button>
+                        <span class="text-gray-900 font-medium">1</span>
+                        <button class="text-gray-600 hover:text-gray-900 font-bold text-xl">+</button>
+                    </div>
+                    <div class="col-span-3 text-center text-gray-900 font-medium">50 B</div>
+                    <div class="col-span-2 flex items-center justify-center gap-3">
+                        <button class="text-gray-600 hover:text-gray-900">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="text-gray-600 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="grid grid-cols-12 gap-4 px-6 py-6 items-center">
+                    <div class="col-span-4 text-gray-700">order name</div>
+                    <div class="col-span-3 flex items-center justify-center gap-3">
+                        <button class="text-gray-600 hover:text-gray-900 font-bold text-xl">-</button>
+                        <span class="text-gray-900 font-medium">1</span>
+                        <button class="text-gray-600 hover:text-gray-900 font-bold text-xl">+</button>
+                    </div>
+                    <div class="col-span-3 text-center text-gray-900 font-medium">50 B</div>
+                    <div class="col-span-2 flex items-center justify-center gap-3">
+                        <button class="text-gray-600 hover:text-gray-900">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="text-gray-600 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="grid grid-cols-12 gap-4 px-6 py-6 items-center">
+                    <div class="col-span-4 text-gray-700">order name</div>
+                    <div class="col-span-3 flex items-center justify-center gap-3">
+                        <button class="text-gray-600 hover:text-gray-900 font-bold text-xl">-</button>
+                        <span class="text-gray-900 font-medium">1</span>
+                        <button class="text-gray-600 hover:text-gray-900 font-bold text-xl">+</button>
+                    </div>
+                    <div class="col-span-3 text-center text-gray-900 font-medium">50 B</div>
+                    <div class="col-span-2 flex items-center justify-center gap-3">
+                        <button class="text-gray-600 hover:text-gray-900">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="text-gray-600 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total -->
+        <div class="flex justify-end mt-6 mb-8">
+            <div class="text-right">
+                <span class="text-xl font-bold text-gray-900">Total</span>
+                <span class="text-2xl font-bold text-gray-900 ml-8">150B</span>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex gap-4 justify-center">
+            <a href="/DEVDINE/frontend/here/menu_here.html" class="bg-gray-800 hover:bg-gray-900 text-white font-semibold px-8 py-3 rounded-full transition-colors">
+                BACK TO MENU
+            <a href="checkout.html" class="bg-[#C41E3A] hover:bg-[#A01828] text-white font-semibold px-12 py-3 rounded-full transition-colors">
+                CHECKOUT
+            </a>
+        </div>
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 bg-[#C41E3A] hover:bg-[#A01828] text-white w-12 h-12 rounded-lg shadow-lg flex items-center justify-center transition-colors">
+        <span class="text-xs font-bold">TOP</span>
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-[#C41E3A] text-white py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-sm mb-4">follow us</p>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-gray-200 transition-colors">
+                    <i class="fab fa-facebook text-xl"></i>
+                </a>
+                <a href="#" class="hover:text-gray-200 transition-colors">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="hover:text-gray-200 transition-colors">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </a>
+                <a href="#" class="hover:text-gray-200 transition-colors">
+                    <i class="fab fa-x-twitter text-xl"></i>
+                </a>
+                <a href="#" class="hover:text-gray-200 transition-colors">
+                    <i class="fab fa-youtube text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevDine Cart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-[#FFF8E7] min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white border-b-2 border-gray-200 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-qcn4gvnavUG3etFou1pehibQu9h4x3.png" alt="DEVDINE Logo" class="w-12 h-12 rounded-full object-cover">
+                <h1 class="text-2xl font-bold text-gray-900">DEVDINE</h1>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="cart.html" class="text-gray-700 hover:text-red-700 transition-colors">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                </a>
+                <a href="index.html" class="text-gray-700 hover:text-red-700 transition-colors">
+                    <i class="fas fa-home text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Red Banner -->
+    <div class="bg-[#C41E3A] h-12"></div>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-4xl mx-auto w-full px-6 py-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-gray-400 pl-4">DevDine Cart</h2>
+
+        <!-- Cart Table -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+            <!-- Table Header -->
+            <div class="grid grid-cols-12 gap-4 px-6 py-4 bg-gray-50 border-b border-gray-200 font-semibold text-gray-700">
+                <div class="col-span-4">Item</div>
+                <div class="col-span-3 text-center">Quantity</div>
+                <div class="col-span-3 text-center">Price</div>
+                <div class="col-span-2 text-center">Edit</div>
+            </div>
+
+            <!-- Cart Items -->
+            <div class="divide-y divide-gray-200">
+                <!-- Item 1 -->
+                <div class="grid grid-cols-12 gap-4 px-6 py-6 items-center">
+                    <div class="col-span-4 text-gray-700">order name</div>
+                    <div class="col-span-3 flex items-center justify-center gap-3">
+                        <button class="text-gray-600 hover:text-gray-900 font-bold text-xl">-</button>
+                        <span class="text-gray-900 font-medium">1</span>
+                        <button class="text-gray-600 hover:text-gray-900 font-bold text-xl">+</button>
+                    </div>
+                    <div class="col-span-3 text-center text-gray-900 font-medium">50 B</div>
+                    <div class="col-span-2 flex items-center justify-center gap-3">
+                        <button class="text-gray-600 hover:text-gray-900">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="text-gray-600 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="grid grid-cols-12 gap-4 px-6 py-6 items-center">
+                    <div class="col-span-4 text-gray-700">order name</div>
+                    <div class="col-span-3 flex items-center justify-center gap-3">
+                        <button class="text-gray-600 hover:text-gray-900 font-bold text-xl">-</button>
+                        <span class="text-gray-900 font-medium">1</span>
+                        <button class="text-gray-600 hover:text-gray-900 font-bold text-xl">+</button>
+                    </div>
+                    <div class="col-span-3 text-center text-gray-900 font-medium">50 B</div>
+                    <div class="col-span-2 flex items-center justify-center gap-3">
+                        <button class="text-gray-600 hover:text-gray-900">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="text-gray-600 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="grid grid-cols-12 gap-4 px-6 py-6 items-center">
+                    <div class="col-span-4 text-gray-700">order name</div>
+                    <div class="col-span-3 flex items-center justify-center gap-3">
+                        <button class="text-gray-600 hover:text-gray-900 font-bold text-xl">-</button>
+                        <span class="text-gray-900 font-medium">1</span>
+                        <button class="text-gray-600 hover:text-gray-900 font-bold text-xl">+</button>
+                    </div>
+                    <div class="col-span-3 text-center text-gray-900 font-medium">50 B</div>
+                    <div class="col-span-2 flex items-center justify-center gap-3">
+                        <button class="text-gray-600 hover:text-gray-900">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="text-gray-600 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total -->
+        <div class="flex justify-end mt-6 mb-8">
+            <div class="text-right">
+                <span class="text-xl font-bold text-gray-900">Total</span>
+                <span class="text-2xl font-bold text-gray-900 ml-8">150B</span>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex gap-4 justify-center">
+            <a href="/DEVDINE/frontend/here/menu_here.html" class="bg-gray-800 hover:bg-gray-900 text-white font-semibold px-8 py-3 rounded-full transition-colors">
+                BACK TO MENU
+            <a href="checkout.html" class="bg-[#C41E3A] hover:bg-[#A01828] text-white font-semibold px-12 py-3 rounded-full transition-colors">
+                CHECKOUT
+            </a>
+        </div>
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 bg-[#C41E3A] hover:bg-[#A01828] text-white w-12 h-12 rounded-lg shadow-lg flex items-center justify-center transition-colors">
+        <span class="text-xs font-bold">TOP</span>
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-[#C41E3A] text-white py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-sm mb-4">follow us</p>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-gray-200 transition-colors">
+                    <i class="fab fa-facebook text-xl"></i>
+                </a>
+                <a href="#" class="hover:text-gray-200 transition-colors">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="hover:text-gray-200 transition-colors">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </a>
+                <a href="#" class="hover:text-gray-200 transition-colors">
+                    <i class="fab fa-x-twitter text-xl"></i>
+                </a>
+                <a href="#" class="hover:text-gray-200 transition-colors">
+                    <i class="fab fa-youtube text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+>>>>>>> 3821659d01984c842ee2c94cf6521f99c70e6def

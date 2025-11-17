@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DEVDINE – Welcome</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font (similar to your project) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: "IBM Plex Mono", monospace;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#FFFDE3]">
+
+  <!-- Header -->
+  <header class="bg-[#FFFDE3] sticky top-0 z-50 shadow-sm rounded-b-[40px]">
+    <div class="max-w-[1000px] mx-auto px-8 py-4 flex items-center gap-3">
+      <img
+        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-IVXQ4JWg3zR7d7S15IXHAR5pXgOXre.png"
+        alt="DEVDINE Logo"
+        class="w-20 h-20 object-contain"
+      />
+      <h1 class="text-4xl font-black text-[#353535] tracking-wide">
+        DEVDINE
+      </h1>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="max-w-[1000px] mx-auto px-6 lg:px-8 py-10 lg:py-16">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <!-- Left: text / hero -->
+      <section>
+        <p class="uppercase text-sm tracking-[0.25em] text-[#C41E3A] mb-3">
+          Welcome to
+        </p>
+        <h2 class="text-4xl lg:text-5xl font-black text-[#353535] mb-4 leading-tight">
+          DEVDINE Queue &amp; Ordering
+        </h2>
+        <p class="text-gray-700 text-sm lg:text-base leading-relaxed mb-6">
+          Reserve your spot, skip the long lines, and enjoy a smoother dining experience.
+          Enter your name and email to receive a one-time password (OTP) and continue to the menu.
+        </p>
+        <ul class="space-y-2 text-sm text-gray-700 mb-6">
+          <li>• Digital queue registration</li>
+          <li>• Simple OTP verification</li>
+          <li>• Order from our menu after login</li>
+        </ul>
+      </section>
+
+      <!-- Right: form card -->
+      <section>
+        <div class="bg-white rounded-3xl shadow-lg p-6 lg:p-8">
+          <h3 class="text-2xl font-bold text-[#353535] mb-1 text-center">
+            Start Your Order
+          </h3>
+          <p class="text-xs text-gray-500 mb-6 text-center">
+            This static version simulates the OTP flow (no real email is sent).
+          </p>
+
+          <form id="otp-form" class="space-y-4">
+            <!-- Name -->
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                class="w-full px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-[#C41E3A] focus:border-[#C41E3A] focus:outline-none bg-white text-gray-700 text-sm"
+                required
+              />
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                class="w-full px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-[#C41E3A] focus:border-[#C41E3A] focus:outline-none bg-white text-gray-700 text-sm"
+                required
+              />
+            </div>
+
+            <!-- Error message -->
+            <p id="error-msg" class="text-red-600 text-xs text-center hidden"></p>
+
+            <!-- First button: Get OTP -->
+            <div id="get-otp-wrapper" class="pt-2">
+              <button
+                type="button"
+                id="get-otp-btn"
+                class="w-full py-3 rounded-full bg-[#C41E3A] hover:bg-[#A01828] text-white font-semibold text-sm transition-colors"
+              >
+                Get OTP
+              </button>
+            </div>
+
+            <!-- OTP section (hidden at first) -->
+            <div id="otp-section" class="space-y-3 pt-2 hidden">
+              <div class="flex flex-col gap-2">
+                <label for="otp" class="block text-sm font-medium text-gray-700">
+                  Enter OTP
+                </label>
+                <input
+                  type="text"
+                  id="otp"
+                  name="otp"
+                  maxlength="6"
+                  pattern="[0-9]{6}"
+                  placeholder="6-digit OTP"
+                  class="w-full px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-[#C41E3A] focus:border-[#C41E3A] focus:outline-none bg-white text-gray-700 text-sm tracking-[0.35em] text-center"
+                  required
+                />
+                <p class="text-[11px] text-gray-500 text-center">
+                  This demo just checks that you enter 6 digits.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                id="verify-otp-btn"
+                class="w-full py-3 rounded-full bg-[#353535] hover:bg-black text-white font-semibold text-sm transition-colors"
+              >
+                Verify OTP &amp; Continue
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Simple JS to simulate OTP flow -->
+  <script>
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const otpInput = document.getElementById("otp");
+    const getOtpBtn = document.getElementById("get-otp-btn");
+    const verifyOtpBtn = document.getElementById("verify-otp-btn");
+    const otpSection = document.getElementById("otp-section");
+    const errorMsg = document.getElementById("error-msg");
+
+    function showError(msg) {
+      errorMsg.textContent = msg;
+      errorMsg.classList.remove("hidden");
+    }
+
+    function clearError() {
+      errorMsg.textContent = "";
+      errorMsg.classList.add("hidden");
+    }
+
+    // Step 1: simulate sending OTP
+    getOtpBtn.addEventListener("click", function () {
+      clearError();
+
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+
+      if (!name || !email) {
+        showError("Please fill in both name and email.");
+        return;
+      }
+
+      // Simulate "sending" OTP
+      alert("OTP has been (simulated) sent to: " + email);
+
+      // Show OTP input section
+      otpSection.classList.remove("hidden");
+    });
+
+    // Step 2: simulate verifying OTP
+    verifyOtpBtn.addEventListener("click", function () {
+      clearError();
+      const otp = otpInput.value.trim();
+
+      if (!otp || otp.length !== 6 || !/^[0-9]{6}$/.test(otp)) {
+        showError("Please enter a valid 6-digit OTP.");
+        return;
+      }
+
+      // In the real app, here it calls /api/send-otp with PUT and redirects using router.push("/menu")
+      // For this static HTML version we just simulate success:
+      alert("OTP verified successfully! Redirecting to menu page...");
+
+      // If you have a static menu page, change this to your real file name, e.g. "menu.html"
+      window.location.href = "test2.html";
+    });
+  </script>
+</body>
+</html>

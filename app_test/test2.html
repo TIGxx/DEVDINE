@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DEVDINE – Menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="test2.css" />
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="header-content">
+        <img
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-IVXQ4JWg3zR7d7S15IXHAR5pXgOXre.png"
+          alt="DEVDINE Logo"
+        />
+        <div>
+          <h1>DEVDINE</h1>
+        </div>
+      </div>
+
+      <nav class="nav-container">
+        <a href="test.html">
+          Home
+        </a>
+        <span class="px-3 py-1 rounded-full bg-[#C41E3A] text-white">
+          Menu
+        </span>
+        <a href="test2.html" class="px-3 py-1 rounded-full border border-[#C41E3A] text-[#C41E3A] hover:bg-[#C41E3A] hover:text-white transition">
+          Cart
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="flex-1">
+    <div class="max-w-[1100px] mx-auto px-6 lg:px-8 py-8 lg:py-10 space-y-8">
+
+      <!-- Intro -->
+      <section class="space-y-3">
+        <p class="uppercase text-xs tracking-[0.25em] text-[#C41E3A]">
+          our menu
+        </p>
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+          <div>
+            <h2 class="text-3xl lg:text-4xl font-black text-[#353535] leading-tight">
+              Choose your meal<br class="hidden lg:block" />
+              &amp; enjoy the line-free queue
+            </h2>
+            <p class="text-[13px] lg:text-sm text-gray-600 mt-2 max-w-xl">
+              Browse by category or search by name. Add items to your cart and
+              continue to checkout when you are ready.
+            </p>
+          </div>
+          <!-- Simple "Cart" summary badge (for visual only) -->
+          <div class="bg-white/80 border border-[#C41E3A]/30 rounded-2xl px-4 py-3 flex items-center gap-3 shadow-sm">
+            <div class="w-8 h-8 rounded-full bg-[#C41E3A] flex items-center justify-center text-white text-sm font-bold">
+              🍽
+            </div>
+            <div>
+              <p class="text-xs text-gray-500">Live Cart Summary</p>
+              <p class="text-sm font-semibold text-[#353535]" id="cart-summary-header">
+                0 items · 0 THB
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Controls: search + categories -->
+      <section class="space-y-4">
+        <div class="flex flex-col sm:flex-row gap-3 sm:items-center">
+          <!-- Search -->
+          <div class="flex-1 relative">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search menu (e.g., Omelet, Rice, Drink)..."
+              class="w-full pl-10 pr-4 py-2.5 rounded-full border border-gray-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#C41E3A]"
+            />
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
+              🔍
+            </span>
+          </div>
+
+          <!-- Go to Cart Button -->
+          <a
+            href="test3.html"
+            class="inline-flex items-center justify-center px-4 py-2.5 rounded-full bg-[#C41E3A] text-white text-sm font-semibold hover:bg-[#A01828] transition-colors"
+          >
+            View Cart
+          </a>
+        </div>
+
+        <!-- Category buttons -->
+        <div class="flex flex-wrap gap-2 text-xs sm:text-sm">
+          <button
+            class="category-btn px-4 py-1.5 rounded-full border border-transparent bg-[#353535] text-white font-semibold"
+            data-category="all"
+          >
+            All
+          </button>
+          <button
+            class="category-btn px-4 py-1.5 rounded-full border border-gray-300 text-[#353535]"
+            data-category="fried"
+          >
+            Fried
+          </button>
+          <button
+            class="category-btn px-4 py-1.5 rounded-full border border-gray-300 text-[#353535]"
+            data-category="rice"
+          >
+            Rice
+          </button>
+          <button
+            class="category-btn px-4 py-1.5 rounded-full border border-gray-300 text-[#353535]"
+            data-category="soup"
+          >
+            Soup
+          </button>
+          <button
+            class="category-btn px-4 py-1.5 rounded-full border border-gray-300 text-[#353535]"
+            data-category="drink"
+          >
+            Drink
+          </button>
+        </div>
+      </section>
+
+      <!-- Menu grid -->
+      <section>
+        <div
+          id="menu-grid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+        >
+          <!-- Cards rendered by JS -->
+        </div>
+
+        <!-- Empty state -->
+        <p
+          id="empty-state"
+          class="hidden text-center text-sm text-gray-500 mt-6"
+        >
+          No menu items found. Try a different name or category.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <!-- Floating cart bar -->
+  <div
+    id="cart-bar"
+    class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[90%] sm:w-auto max-w-[500px] bg-[#353535] text-white rounded-3xl shadow-lg px-5 py-3 flex items-center justify-between gap-3 text-sm"
+  >
+    <div>
+      <p class="font-semibold text-[13px]" id="cart-bar-title">Your Cart</p>
+      <p class="text-[12px] text-gray-200" id="cart-bar-text">
+        0 items · 0 THB
+      </p>
+    </div>
+    <a
+      href="test4.html"
+      class="inline-flex items-center justify-center px-4 py-2 rounded-full bg-[#C41E3A] text-white text-xs font-semibold hover:bg-[#A01828] transition-colors"
+    >
+      Continue to Checkout →
+    </a>
+  </div>
+
+  <!-- Scroll to top button -->
+  <button
+    id="scroll-top"
+    aria-label="Scroll to top"
+  >
+  <img src="image/up-arrow.png" alt="Up Arrow"/>
+  </button>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-top">Follow Us</div>
+      <ul class="social-icon">
+        <li><a href="#"><img src="image/facebook.png" alt="Facebook"></a></li>
+        <li><a href="#"><img src="image/instagram.png" alt="Instagram"></a></li>
+        <li><a href="#"><img src="image/twitter.png" alt="Twitter"></a></li>
+        <li><a href="#"><img src="image/line.png" alt="Line"></a></li>
+        <li><a href="#"><img src="image/youtube.png" alt="Youtube"></a></li>
+      </ul>
+      <div class="footer-bottom">
+        <div class="copy-right">&copy; 2025 DEVDINE. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS: Menu logic + simple cart -->
+<script>
+  // Same items as in your Next.js MENU_ITEMS constant
+  const MENU_ITEMS = [
+    { id: "1", name: "Omelet", price: 50, category: "fried" },
+    { id: "2", name: "Fried Chicken", price: 50, category: "fried" },
+    { id: "3", name: "Crab Fried Rice", price: 50, category: "rice" },
+    { id: "4", name: "Fried Shrimp Cake", price: 50, category: "fried" },
+    { id: "5", name: "Spicy Shrimp Soup", price: 50, category: "soup" },
+    { id: "6", name: "Rice", price: 50, category: "rice" },
+    { id: "7", name: "Water", price: 50, category: "drink" },
+    { id: "8", name: "Cocacola", price: 50, category: "drink" },
+    { id: "9", name: "Ice", price: 50, category: "drink" },
+  ];
+
+  const STORAGE_KEY = "devdine_cart";
+
+  function loadCart() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return {};
+      const parsed = JSON.parse(raw);
+      return parsed && typeof parsed === "object" ? parsed : {};
+    } catch (e) {
+      console.error("Failed to load cart:", e);
+      return {};
+    }
+  }
+
+  function saveCart(cart) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+    } catch (e) {
+      console.error("Failed to save cart:", e);
+    }
+  }
+
+  let selectedCategory = "all";
+  let searchQuery = "";
+  let cart = loadCart(); // { id: { item, quantity } }
+
+  const menuGrid = document.getElementById("menu-grid");
+  const emptyState = document.getElementById("empty-state");
+  const categoryButtons = document.querySelectorAll(".category-btn");
+  const searchInput = document.getElementById("search-input");
+  const cartSummaryHeader = document.getElementById("cart-summary-header");
+  const cartBarTitle = document.getElementById("cart-bar-title");
+  const cartBarText = document.getElementById("cart-bar-text");
+  const scrollTopBtn = document.getElementById("scroll-top");
+
+  function filterItems() {
+    return MENU_ITEMS.filter((item) => {
+      const matchesCategory =
+        selectedCategory === "all" || item.category === selectedCategory;
+      const matchesSearch = item.name
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }
+
+  function renderMenu() {
+    const items = filterItems();
+    menuGrid.innerHTML = "";
+
+    if (items.length === 0) {
+      emptyState.classList.remove("hidden");
+      return;
+    } else {
+      emptyState.classList.add("hidden");
+    }
+
+    items.forEach((item) => {
+      const card = document.createElement("div");
+      card.className =
+        "bg-white rounded-2xl shadow-sm border border-gray-100 p-4 flex flex-col justify-between";
+
+      card.innerHTML = `
+        <div class="space-y-1">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-gray-400">
+            ${item.category}
+          </p>
+          <h3 class="text-lg font-semibold text-[#353535]">
+            ${item.name}
+          </h3>
+          <p class="text-sm text-gray-500">Classic ${item.category} dish</p>
+        </div>
+        <div class="mt-4 flex items-center justify-between">
+          <p class="text-base font-bold text-[#C41E3A]">${item.price} THB</p>
+          <button
+            class="add-to-cart px-3 py-1.5 rounded-full bg-[#353535] text-white text-xs font-semibold hover:bg-black transition-colors"
+            data-id="${item.id}"
+          >
+            Add
+          </button>
+        </div>
+      `;
+
+      menuGrid.appendChild(card);
+    });
+
+    // Attach listeners to "Add" buttons
+    document.querySelectorAll(".add-to-cart").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-id");
+        addToCart(id);
+      });
+    });
+  }
+
+  function addToCart(id) {
+    const item = MENU_ITEMS.find((m) => m.id === id);
+    if (!item) return;
+
+    if (!cart[id]) {
+      cart[id] = { item, quantity: 0 };
+    }
+    cart[id].quantity += 1;
+    updateCartSummary();
+    saveCart(cart);
+  }
+
+  function updateCartSummary() {
+    const values = Object.values(cart);
+    let totalItems = 0;
+    let totalPrice = 0;
+
+    values.forEach(({ item, quantity }) => {
+      totalItems += quantity;
+      totalPrice += item.price * quantity;
+    });
+
+    const itemLabel = totalItems === 1 ? "item" : "items";
+
+    cartSummaryHeader.textContent = `${totalItems} ${itemLabel} · ${totalPrice} THB`;
+    cartBarTitle.textContent =
+      totalItems > 0 ? "Your Cart" : "Your Cart is Empty";
+    cartBarText.textContent = `${totalItems} ${itemLabel} · ${totalPrice} THB`;
+  }
+
+  // Category button click
+  categoryButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      selectedCategory = btn.getAttribute("data-category");
+      categoryButtons.forEach((b) => {
+        b.classList.remove("bg-[#353535]", "text-white", "border-transparent");
+        b.classList.add("border-gray-300", "text-[#353535]");
+      });
+      btn.classList.remove("border-gray-300");
+      btn.classList.add("bg-[#353535]", "text-white", "border-transparent");
+      renderMenu();
+    });
+  });
+
+  // Search input
+  searchInput.addEventListener("input", (e) => {
+    searchQuery = e.target.value || "";
+    renderMenu();
+  });
+
+  // Scroll to top
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Initial render
+  renderMenu();
+  updateCartSummary();
+</script>
+</body>
+</html>

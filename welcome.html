@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEVDINE - Restaurant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!--css link-->
+  <link rel="stylesheet" href="welcome.css">
+  <!--Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<header class="header">
+  <div class="container header-flex">
+    <div class="left-side">
+      <a href="#">
+        <img src="image/logo.png" alt="DEVDINE Logo" class="logo">
+      </a>
+    </div>
+
+    <h1 class="title"><a href="#">DEVDINE</a></h1>
+  </div>
+</header>
+
+<div class="dd-modal" id="signupModal" aria-hidden="true">
+  <div class="dd-modal__overlay" data-close></div>
+  <div class="dd-modal__panel" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
+    <button class="dd-modal__close" data-close aria-label="Close">×</button>
+
+    <div class="dd-modal__cap"></div>
+    <h3 id="signupTitle" class="dd-modal__title">Please fill in</h3>
+
+    <label class="dd-field">
+      <span class="dd-label">Name</span>
+      <input id="ddName" type="text" class="dd-input" placeholder="enter here..." autocomplete="name" />
+    </label>
+
+    <label class="dd-field">
+      <span class="dd-label">E-mail</span>
+      <input id="ddEmail" type="email" class="dd-input" placeholder="enter here..." autocomplete="email" />
+    </label>
+
+    <button id="ddToOtp" class="dd-cta" aria-label="Continue">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+
+<!-- ===== OTP Modal ===== -->
+<div class="dd-modal" id="otpModal" aria-hidden="true">
+  <div class="dd-modal__overlay" data-close></div>
+  <div class="dd-modal__panel" role="dialog" aria-modal="true" aria-labelledby="otpTitle">
+    <button class="dd-modal__close" data-close aria-label="Close">×</button>
+
+    <div class="dd-modal__cap"></div>
+    <h3 id="otpTitle" class="dd-modal__title">Additional Verification<br/>Required</h3>
+
+    <p class="dd-help">
+      For add security, please enter the code<br/>
+      that we’ve emailed to<br/>
+      <span id="ddEmailEcho">user@gmail.com</span>
+    </p>
+
+    <form id="ddOtpForm" class="dd-otp" autocomplete="one-time-code">
+      <input inputmode="numeric" maxlength="1" class="dd-otp__cell" />
+      <input inputmode="numeric" maxlength="1" class="dd-otp__cell" />
+      <input inputmode="numeric" maxlength="1" class="dd-otp__cell" />
+      <input inputmode="numeric" maxlength="1" class="dd-otp__cell" />
+      <input inputmode="numeric" maxlength="1" class="dd-otp__cell" />
+    </form>
+  </div>
+</div>
+
+<main>
+<section>
+    <div class="home-content">
+        <img src="image/logo.png" alt="DEVDINE Logo" class="home-logo">
+        <h2>Welcome to</h2>
+        <h3>DEVDINE</h3>
+        <p>"DevDine is a food web application that helps you discover and order delicious meals from your favorite local restaurants with just a few clicks."</p>
+        <a href="#" id="openSignup" class="start-button">Start Order</a>
+    </div>
+</section>
+
+<div class="back-top">
+    <a href="#" class="backtop-btn">
+      <img src="image/up-arrow.png" alt="Back to Top">
+    </a>
+</div>
+
+<footer>
+    <div class="footer-content">
+      <div class="footer-top">Follow Us</div>
+      <ul class="social-icon">
+        <li><a href="#"><img src="image/facebook.png" alt="Facebook"></a></li>
+        <li><a href="#"><img src="image/instagram.png" alt="Instagram"></a></li>
+        <li><a href="#"><img src="image/twitter.png" alt="Twitter"></a></li>
+        <li><a href="#"><img src="image/line.png" alt="Line"></a></li>
+        <li><a href="#"><img src="image/youtube.png" alt="Youtube"></a></li>
+      </ul>
+      <div class="footer-bottom">
+        <div class="copy-right">&copy; 2025 DEVDINE. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<script>
+  // Short helpers
+  const $ = (s, r=document) => r.querySelector(s);
+  const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+
+  const signupModal = $('#signupModal');
+  const otpModal    = $('#otpModal');
+
+  function openModal(el){
+    el.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+  }
+  function closeModals(){
+    [signupModal, otpModal].forEach(m => m.setAttribute('aria-hidden','true'));
+    document.body.classList.remove('modal-open');
+  }
+
+  // Open from "Start Order"
+  $('#openSignup')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    openModal(signupModal);
+    $('#ddName').focus();
+  });
+
+  // Close on overlay / X / ESC
+  $$('.dd-modal [data-close]').forEach(btn =>
+    btn.addEventListener('click', closeModals)
+  );
+  window.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closeModals();
+  });
+
+  // Go to OTP step
+  $('#ddToOtp').addEventListener('click', () => {
+    const email = $('#ddEmail').value.trim();
+    $('#ddEmailEcho').textContent = email || 'your email';
+    signupModal.setAttribute('aria-hidden','true');
+    openModal(otpModal);
+    // focus first otp cell
+    $('.dd-otp__cell', otpModal).focus();
+  });
+
+  // OTP UX: type -> move next, backspace -> prev, paste whole code
+  const cells = $$('.dd-otp__cell', otpModal);
+  cells.forEach((cell, idx) => {
+    cell.addEventListener('input', (e) => {
+      // Keep only digits
+      cell.value = cell.value.replace(/\D/g, '').slice(0,1);
+      if(cell.value && idx < cells.length - 1) cells[idx + 1].focus();
+      if(cells.every(c => c.value.length === 1)){
+        const code = cells.map(c => c.value).join('');
+        console.log('OTP entered:', code); // TODO: submit code
+      }
+    });
+    cell.addEventListener('keydown', (e) => {
+      if(e.key === 'Backspace' && !cell.value && idx > 0){
+        cells[idx - 1].focus(); cells[idx - 1].value = '';
+      }
+      if(e.key === 'ArrowLeft' && idx > 0)  cells[idx - 1].focus();
+      if(e.key === 'ArrowRight' && idx < cells.length - 1) cells[idx + 1].focus();
+    });
+  });
+
+  // Handle paste of 5 digits into any cell
+  otpModal.addEventListener('paste', (e) => {
+    const text = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g,'').slice(0,5);
+    if(!text) return;
+    e.preventDefault();
+    cells.forEach((c,i)=> c.value = text[i] || '');
+    (text.length < 5 ? cells[text.length] : cells[cells.length-1]).focus();
+  });
+</script>
+</body>
+</html>
