@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEVDINE - Restaurant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!--css link-->
+  <link rel="stylesheet" href="index.css">
+  <!--Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container header-flex">
+    <div class="left-side">
+      <a href="#">
+        <img src="image/logo.png" alt="DEVDINE Logo" class="logo">
+      </a>
+    </div>
+
+    <h1 class="title"><a href="#">DEVDINE</a></h1>
+
+    <div class="right-side">
+      <img src="image/home.png" class="home-icon">
+      <img src="image/cart.png" class="cart-icon">
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="fullscreen-slider">
+        <div class="slides-container">
+            <div class="slides">
+                <div class="slide">
+                    <img src="image/food.jpg" alt="Food 1">
+                </div>
+                <div class="slide">
+                    <img src="image/food2.jpg" alt="Food 2">
+                </div>
+                <div class="slide">
+                    <img src="image/food3.jpg" alt="Food 3">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <button class="nav-btn prev-btn">❮</button>
+        <button class="nav-btn next-btn">❯</button>
+        
+        <!-- Dots Indicator -->
+        <div class="dots-container">
+            <div class="dots">
+                <div class="dot active" data-index="0"></div>
+                <div class="dot" data-index="1"></div>
+                <div class="dot" data-index="2"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Elements
+        const slides = document.querySelector('.slides');
+        const slideItems = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        
+        // Current slide index
+        let currentIndex = 0;
+        const totalSlides = slideItems.length;
+
+        // Update slider position
+        function updateSlider() {
+            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateDots();
+        }
+
+        // Update dots active state
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        // Next slide
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlider();
+        }
+
+        // Previous slide
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        // Dot click event
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                currentIndex = parseInt(dot.dataset.index);
+                updateSlider();
+            });
+        });
+
+        // Navigation buttons event
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Auto slide
+        let autoSlide = setInterval(nextSlide, 5000);
+
+        // Pause auto slide on hover
+        const slider = document.querySelector('.fullscreen-slider');
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(autoSlide);
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            autoSlide = setInterval(nextSlide, 5000);
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Touch swipe support
+        let startX = 0;
+        let endX = 0;
+
+        slider.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        slider.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const diff = startX - endX;
+            if (Math.abs(diff) > 50) { // Minimum swipe distance
+                if (diff > 0) {
+                    nextSlide(); // Swipe left
+                } else {
+                    prevSlide(); // Swipe right
+                }
+            }
+        }
+
+        // Initialize
+        updateSlider();
+    </script>
+
+  <section>
+    <div class="form">
+      <form class="form-spacing">
+        <label for="name">Name:</label>
+        <input type="text"
+        id="name"
+        placeholder="enter here..."
+        required>
+      </form>
+
+      <form class="form-spacing">
+        <label for="tel">Telephone:</label>
+        <input type="tel"
+        id="tel"
+        placeholder="enter here..."
+        required>
+      </form>
+    </div>
+
+    <div class="button-group">
+      <button type="button"><a href="here/menu_here.html">Eat Here</a></button>
+      <span>or</span>
+      <button type="button"><a href="home/menu_home.html">Takeaway</a></button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-top">Follow Us</div>
+      <ul class="social-icon">
+        <li><a href="#"><img src="image/facebook.png" alt="Facebook"></a></li>
+        <li><a href="#"><img src="image/instagram.png" alt="Instagram"></a></li>
+        <li><a href="#"><img src="image/twitter.png" alt="Twitter"></a></li>
+        <li><a href="#"><img src="image/line.png" alt="Line"></a></li>
+        <li><a href="#"><img src="image/youtube.png" alt="Youtube"></a></li>
+      </ul>
+      <div class="footer-bottom">
+        <div class="copy-right">&copy; 2025 DEVDINE. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+</main>
+</body>
+</html>
